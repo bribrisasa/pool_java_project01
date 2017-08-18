@@ -1,7 +1,9 @@
 package pool_java_project01.CONTROL;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.regex.Pattern;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -28,80 +30,84 @@ public class Converter {
 		this.view = view;
 	}
 
-	public double toResult(Currency origin, Currency target,double amount){
+	public double toResult(Currency origin, Currency target, double amount) {
 		double result;
-		result = amount*origin.convertToDollar();
+		result = amount * origin.convertToDollar();
 		return result / target.convertToDollar();
 
 	}
 
 	public String[] currenciesList() throws SAXException, IOException, ParserConfigurationException {
-        String[] currencies;
-        ArrayList<String> curr = new ArrayList<String>();
-        
-        final DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-        final DocumentBuilder builder = factory.newDocumentBuilder();
-        File fileXML = new File("src/pool_java_project01/CONTROL/conversionRate.xml");
+		String[] currencies;
+		ArrayList<String> curr = new ArrayList<String>();
 
-        Document xml = builder.parse(fileXML);        
-        final Element racine = xml.getDocumentElement();
-        final NodeList racineNoeuds = racine.getChildNodes();
-        final int nbRacineNoeuds = racineNoeuds.getLength();
+		final DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+		final DocumentBuilder builder = factory.newDocumentBuilder();
+		File fileXML = new File("src/pool_java_project01/CONTROL/conversionRate.xml");
 
-        
-        for (int i = 0; i<nbRacineNoeuds; i++) {
-            if(racineNoeuds.item(i).getNodeType() == Node.ELEMENT_NODE) {
-                final Element currency = (Element) racineNoeuds.item(i);
-                final Element nameCurrency = (Element) currency.getElementsByTagName("name").item(0);            
-                if(nameCurrency.getTextContent() != null)
-                    curr.add(nameCurrency.getTextContent());
-            }    
-        }
-        currencies = new String[curr.size()];
-        for (int i = 0; i<curr.size(); i++) {
-            currencies[i] = curr.get(i);
-        }
-        return currencies;
-    }
+		Document xml = builder.parse(fileXML);
+		final Element racine = xml.getDocumentElement();
+		final NodeList racineNoeuds = racine.getChildNodes();
+		final int nbRacineNoeuds = racineNoeuds.getLength();
 
-	
+		for (int i = 0; i < nbRacineNoeuds; i++) {
+			if (racineNoeuds.item(i).getNodeType() == Node.ELEMENT_NODE) {
+				final Element currency = (Element) racineNoeuds.item(i);
+				final Element nameCurrency = (Element) currency.getElementsByTagName("name").item(0);
+				if (nameCurrency.getTextContent() != null)
+					curr.add(nameCurrency.getTextContent());
+			}
+		}
+		currencies = new String[curr.size()];
+		for (int i = 0; i < curr.size(); i++) {
+			currencies[i] = curr.get(i);
+		}
+		return currencies;
+	}
+
 	public String convert(String amountOrigin, String currencyOrigin, String currencyTarget) {
-		double total=0;
-		
+		double total = 0;
+
 		Currency origin = null;
 		Currency target = null;
-		System.out.println(currencyOrigin);
-		System.out.println(currencyTarget);
-		switch(currencyOrigin) {
-		case "EURO":
-			origin=new Euro();	
-			break;
-		case "DOLLAR":
-			origin=new Dollar();	
-			break;
-		case "POUND":
-			origin=new Pound();	
-			break;
-		case "CANADIAN DOLLAR":
-			origin=new CanadianDollar();	
-			break;
+
+		boolean b = Pattern.matches("[^a-zA-Z -]*", amountOrigin);
+		if (b) {
+
+			switch (currencyOrigin) {
+			case "EURO":
+				origin = new Euro();
+				break;
+			case "DOLLAR":
+				origin = new Dollar();
+				break;
+			case "POUND":
+				origin = new Pound();
+				break;
+			case "CANADIAN DOLLAR":
+				origin = new CanadianDollar();
+				break;
+			}
+			
+			switch (currencyTarget) {
+			case "EURO":
+				target = new Euro();
+				break;
+			case "DOLLAR":
+				target = new Dollar();
+				break;
+			case "POUND":
+				target = new Pound();
+				break;
+			case "CANADIAN DOLLAR":
+				target = new CanadianDollar();
+				break;
+			}
+
+			total = toResult(origin, target, Double.parseDouble(amountOrigin));
+			return Double.toString(total);
+		} else {
+			return "O";
 		}
-		switch(currencyTarget) {
-		case "EURO":
-			target=new Euro();	
-			break;
-		case "DOLLAR":
-			target=new Dollar();	
-			break;
-		case "POUND":
-			target=new Pound();	
-			break;
-		case "CANADIAN DOLLAR":
-			origin=new CanadianDollar();	
-			break;
-		}
-		System.out.println(origin.getName());
-		total=toResult(origin,target,Double.parseDouble(amountOrigin));
-		return  Double.toString(total);	
 	}
 }
