@@ -30,8 +30,9 @@ public class Converter {
 
 	public double toResult(Currency origin, Currency target,double amount){
 		double result;
-		result = origin.convertToDollar()*amount;
-		return result;
+		result = amount*origin.convertToDollar();
+		return result / target.convertToDollar();
+
 	}
 
 	public String[] currenciesList() throws SAXException, IOException, ParserConfigurationException {
@@ -63,26 +64,43 @@ public class Converter {
         return currencies;
     }
 
+	
 	public String convert(String amountOrigin, String currencyOrigin, String currencyTarget) {
 		double total=0;
+		
 		Currency origin = null;
 		Currency target = null;
+		System.out.println(currencyOrigin);
+		System.out.println(currencyTarget);
 		switch(currencyOrigin) {
-		case "EUR":
+		case "EURO":
 			origin=new Euro();	
+			break;
 		case "DOLLAR":
 			origin=new Dollar();	
+			break;
 		case "POUND":
 			origin=new Pound();	
+			break;
+		case "CANADIAN DOLLAR":
+			origin=new CanadianDollar();	
+			break;
 		}
 		switch(currencyTarget) {
-		case "EUR":
+		case "EURO":
 			target=new Euro();	
+			break;
 		case "DOLLAR":
 			target=new Dollar();	
+			break;
 		case "POUND":
 			target=new Pound();	
+			break;
+		case "CANADIAN DOLLAR":
+			origin=new CanadianDollar();	
+			break;
 		}
+		System.out.println(origin.getName());
 		total=toResult(origin,target,Double.parseDouble(amountOrigin));
 		return  Double.toString(total);	
 	}

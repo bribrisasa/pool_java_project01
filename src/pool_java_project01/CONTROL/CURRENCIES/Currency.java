@@ -22,13 +22,4 @@ public abstract class Currency {
 	public double convertToDollar(){
 		return convertDollar;	
 	}
-
-	public double convertToTarget(double amoutInDollar) {
-		try {
-			double total= amoutInDollar/convertDollar;
-			return total;
-		}catch(Exception e) {
-			return 0;
-		}
-	}
 }

@@ -7,7 +7,7 @@
     </currency>
         <!-- Euro -->
     <currency id="2">
-        <name>EUR</name>
+        <name>EURO</name>
         <Value>1,18</Value>
     </currency>
             <!-- Pound -->
