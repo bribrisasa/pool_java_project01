@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <conversion>
     <!-- Dollar -->
-    <currency id=1>
+    <currency id="1">
         <name>Dollar</name>
         <Value>1</Value>
     </currency>
         <!-- Euro -->
-    <currency id=2>
+    <currency id="2">
         <name>Euro</name>
         <Value>1,18</Value>
     </currency>
             <!-- Pound -->
-    <currency id=3>
+    <currency id="3">
         <name>Pound</name>
         <Value>1,29</Value>
     </currency>
               <!-- CanadianDollar -->
-    <currency id=4>
+    <currency id="4">
         <name>CanadianDollar</name>
         <Value>0.79</Value>
                       <!-- CanadianDollar -->
     </currency>
-        <currency id=5>
+        <currency id="5">
         <name>PLACEHOLDER</name>
         <Value>000</Value>
     </currency>
