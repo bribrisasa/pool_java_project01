@@ -31,30 +31,37 @@ public class Converter {
 	public double toResult(Currency origin, Currency target,double amount){
 		double result;
 		result = origin.convertToDollar()*amount;
-		result=result*target.convertToDollar();
-		return result;	
+		return result;
 	}
 
-	public ArrayList<String> currenciesList() throws SAXException, IOException, ParserConfigurationException {
-		ArrayList<String> currencies=new ArrayList<>();
-		final DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-		final DocumentBuilder builder = factory.newDocumentBuilder();
-		File fileXML = new File("src/pool_java_project01/CONTROL/conversionRate.xml");
+	public String[] currenciesList() throws SAXException, IOException, ParserConfigurationException {
+        String[] currencies;
+        ArrayList<String> curr = new ArrayList<String>();
+        
+        final DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        final DocumentBuilder builder = factory.newDocumentBuilder();
+        File fileXML = new File("src/pool_java_project01/CONTROL/conversionRate.xml");
 
-		Document xml = builder.parse(fileXML);		
-		final Element racine = xml.getDocumentElement();
-		final NodeList racineNoeuds = racine.getChildNodes();
-		final int nbRacineNoeuds = racineNoeuds.getLength();
+        Document xml = builder.parse(fileXML);        
+        final Element racine = xml.getDocumentElement();
+        final NodeList racineNoeuds = racine.getChildNodes();
+        final int nbRacineNoeuds = racineNoeuds.getLength();
 
-		for (int i = 0; i<nbRacineNoeuds; i++) {
-			if(racineNoeuds.item(i).getNodeType() == Node.ELEMENT_NODE) {
-				final Element currency = (Element) racineNoeuds.item(i);
-				final Element nameCurrency = (Element) currency.getElementsByTagName("name").item(0);			
-				currencies.add(nameCurrency.getTextContent());
-			}	
-		}
-		return currencies;
-	}
+        
+        for (int i = 0; i<nbRacineNoeuds; i++) {
+            if(racineNoeuds.item(i).getNodeType() == Node.ELEMENT_NODE) {
+                final Element currency = (Element) racineNoeuds.item(i);
+                final Element nameCurrency = (Element) currency.getElementsByTagName("name").item(0);            
+                if(nameCurrency.getTextContent() != null)
+                    curr.add(nameCurrency.getTextContent());
+            }    
+        }
+        currencies = new String[curr.size()];
+        for (int i = 0; i<curr.size(); i++) {
+            currencies[i] = curr.get(i);
+        }
+        return currencies;
+    }
 
 	public String convert(String amountOrigin, String currencyOrigin, String currencyTarget) {
 		double total=0;
