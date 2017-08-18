@@ -19,5 +19,10 @@
     <currency id=4>
         <name>CanadianDollar</name>
         <Value>0.79</Value>
+                      <!-- CanadianDollar -->
+    </currency>
+        <currency id=5>
+        <name>PLACEHOLDER</name>
+        <Value>000</Value>
     </currency>
 </conversion>
