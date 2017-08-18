@@ -12,10 +12,17 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
+import javax.swing.JFrame;
 
 import pool_java_project01.CONTROL.CURRENCIES.Currency;
+import pool_java_project01.GUI.WindowConverter;
 
 public class Converter {
+	WindowConverter view;
+	
+	public Converter(WindowConverter view) {
+		this.view = view;
+	}
 
 	public double toResult(Currency currency, double input){
 		double result;
@@ -43,5 +50,10 @@ public class Converter {
 			}	
 		}
 		return currencies;
+	}
+	
+	public String convert(String amountOrigin, String currencyOrigin, String currencyTarget) {
+		System.out.println(amountOrigin + currencyOrigin + currencyTarget);
+		return (amountOrigin + currencyOrigin + currencyTarget);
 	}
 }
