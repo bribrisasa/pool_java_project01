@@ -5,6 +5,11 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import pool_java_project01.CONTROL.*;
+import pool_java_project01.CONTROL.CURRENCIES.CanadianDollar;
+import pool_java_project01.CONTROL.CURRENCIES.Currency;
+import pool_java_project01.CONTROL.CURRENCIES.Dollar;
+import pool_java_project01.CONTROL.CURRENCIES.Euro;
+import pool_java_project01.CONTROL.CURRENCIES.Pound;
 
 public class CreateCurrency {
 
