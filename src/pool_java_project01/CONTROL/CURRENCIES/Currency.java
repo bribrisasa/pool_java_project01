@@ -14,12 +14,21 @@ public abstract class Currency {
 	public String getName() {
 		return name;
 	}
-
+	
 	public void seeMoneyName(){
 		System.out.println(this.name);
 	}
 
-	public double getConvertDollar(){
+	public double convertToDollar(){
 		return convertDollar;	
+	}
+
+	public double convertToTarget(double amoutInDollar) {
+		try {
+			double total= amoutInDollar/convertDollar;
+			return total;
+		}catch(Exception e) {
+			return 0;
+		}
 	}
 }

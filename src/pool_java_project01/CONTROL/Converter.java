@@ -14,23 +14,27 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 import javax.swing.JFrame;
 
+import pool_java_project01.CONTROL.CURRENCIES.CanadianDollar;
 import pool_java_project01.CONTROL.CURRENCIES.Currency;
+import pool_java_project01.CONTROL.CURRENCIES.Dollar;
+import pool_java_project01.CONTROL.CURRENCIES.Euro;
+import pool_java_project01.CONTROL.CURRENCIES.Pound;
 import pool_java_project01.GUI.WindowConverter;
 
 public class Converter {
 	WindowConverter view;
-	
+
 	public Converter(WindowConverter view) {
 		this.view = view;
 	}
 
-	public double toResult(Currency currency, double input){
+	public double toResult(Currency origin, Currency target,double amount){
 		double result;
-
-		result = currency.getConvertDollar()*input;
+		result = origin.convertToDollar()*amount;
+		result=result*target.convertToDollar();
 		return result;	
 	}
-	
+
 	public ArrayList<String> currenciesList() throws SAXException, IOException, ParserConfigurationException {
 		ArrayList<String> currencies=new ArrayList<>();
 		final DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -51,9 +55,28 @@ public class Converter {
 		}
 		return currencies;
 	}
-	
+
 	public String convert(String amountOrigin, String currencyOrigin, String currencyTarget) {
-		System.out.println(amountOrigin + currencyOrigin + currencyTarget);
-		return (amountOrigin + currencyOrigin + currencyTarget);
+		double total=0;
+		Currency origin = null;
+		Currency target = null;
+		switch(currencyOrigin) {
+		case "EUR":
+			origin=new Euro();	
+		case "DOLLAR":
+			origin=new Dollar();	
+		case "POUND":
+			origin=new Pound();	
+		}
+		switch(currencyTarget) {
+		case "EUR":
+			target=new Euro();	
+		case "DOLLAR":
+			target=new Dollar();	
+		case "POUND":
+			target=new Pound();	
+		}
+		total=toResult(origin,target,Double.parseDouble(amountOrigin));
+		return  Double.toString(total);	
 	}
 }

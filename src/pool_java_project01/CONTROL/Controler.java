@@ -17,32 +17,30 @@ public class Controler {
 		final DocumentBuilder builder = factory.newDocumentBuilder();
 		File fileXML = new File("src/pool_java_project01/CONTROL/conversionRate.xml");
 		Document xml = builder.parse(fileXML);
-		
+
 		final Element racine = xml.getDocumentElement();
 		final NodeList racineNoeuds = racine.getChildNodes();
 		final int nbRacineNoeuds = racineNoeuds.getLength();
 
 
 
-			for (int i = 0; i<nbRacineNoeuds; i++) {
-		        if(racineNoeuds.item(i).getNodeType() == Node.ELEMENT_NODE) {
-		            final Element currency = (Element) racineNoeuds.item(i);
-					
-			   // System.out.println("Id : " + currency.getAttribute("id"));
-				
-			    final Element nameCurrency = (Element) currency.getElementsByTagName("name").item(0);
-			    final Element valueCurrency = (Element) currency.getElementsByTagName("Value").item(0);
-						
-			    if(nameCurrency.getTextContent().equalsIgnoreCase("Euro")) {
-			    	double d = Double.parseDouble(valueCurrency.getTextContent());
-			    		//System.out.println(d);
-			    }
-			    
-			   // System.out.println("Name : " + nameCurrency.getTextContent());
-			  //  System.out.println("Value : " + valueCurrency.getTextContent());
-		        }
+		for (int i = 0; i<nbRacineNoeuds; i++) {
+			if(racineNoeuds.item(i).getNodeType() == Node.ELEMENT_NODE) {
+				final Element currency = (Element) racineNoeuds.item(i);
+
+				// System.out.println("Id : " + currency.getAttribute("id"));
+
+				final Element nameCurrency = (Element) currency.getElementsByTagName("name").item(0);
+				final Element valueCurrency = (Element) currency.getElementsByTagName("Value").item(0);
+
+				if(nameCurrency.getTextContent().equalsIgnoreCase("Euro")) {
+					//double d = Double.parseDouble(valueCurrency.getTextContent());
+					//System.out.println(d);
+				}
+
+				// System.out.println("Name : " + nameCurrency.getTextContent());
+				//  System.out.println("Value : " + valueCurrency.getTextContent());
 			}
-			
-			
+		}		
 	}
 }
