@@ -23,7 +23,7 @@ public class Converter {
 		result = currency.getConvertDollar()*input;
 		return result;	
 	}
-
+	
 	public ArrayList<String> currenciesList() throws SAXException, IOException, ParserConfigurationException {
 		ArrayList<String> currencies=new ArrayList<>();
 		final DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
