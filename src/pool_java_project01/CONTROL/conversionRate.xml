@@ -2,27 +2,23 @@
 <conversion>
     <!-- Dollar -->
     <currency id="1">
-        <name>Dollar</name>
+        <name>DOLLAR</name>
         <Value>1</Value>
     </currency>
         <!-- Euro -->
     <currency id="2">
-        <name>Euro</name>
+        <name>EUR</name>
         <Value>1,18</Value>
     </currency>
             <!-- Pound -->
     <currency id="3">
-        <name>Pound</name>
+        <name>POUND</name>
         <Value>1,29</Value>
     </currency>
               <!-- CanadianDollar -->
     <currency id="4">
-        <name>CanadianDollar</name>
+        <name>CANADIAN DOLLAR</name>
         <Value>0.79</Value>
                       <!-- CanadianDollar -->
-    </currency>
-        <currency id="5">
-        <name>PLACEHOLDER</name>
-        <Value>000</Value>
     </currency>
 </conversion>
