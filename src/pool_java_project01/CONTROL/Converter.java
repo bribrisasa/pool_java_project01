@@ -16,11 +16,8 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 import javax.swing.JFrame;
 
-import pool_java_project01.CONTROL.CURRENCIES.CanadianDollar;
 import pool_java_project01.CONTROL.CURRENCIES.Currency;
-import pool_java_project01.CONTROL.CURRENCIES.Dollar;
-import pool_java_project01.CONTROL.CURRENCIES.Euro;
-import pool_java_project01.CONTROL.CURRENCIES.Pound;
+
 import pool_java_project01.GUI.WindowConverter;
 
 public class Converter {
@@ -33,13 +30,13 @@ public class Converter {
 	public double toResult(Currency origin, Currency target, double amount) {
 		double result;
 		result = amount * origin.convertToDollar();
-		return result / target.convertToDollar();
+		double total = result / target.convertToDollar();
+		return (double) Math.round(total * 100) / 100;
 
 	}
 
 	public String[] currenciesList() throws SAXException, IOException, ParserConfigurationException {
-		String[] currencies;
-		ArrayList<String> curr = new ArrayList<String>();
+		ArrayList<String> currencies = new ArrayList<String>();
 
 		final DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		final DocumentBuilder builder = factory.newDocumentBuilder();
@@ -55,17 +52,41 @@ public class Converter {
 				final Element currency = (Element) racineNoeuds.item(i);
 				final Element nameCurrency = (Element) currency.getElementsByTagName("name").item(0);
 				if (nameCurrency.getTextContent() != null)
-					curr.add(nameCurrency.getTextContent());
+					currencies.add(nameCurrency.getTextContent());
 			}
-		}
-		currencies = new String[curr.size()];
-		for (int i = 0; i < curr.size(); i++) {
-			currencies[i] = curr.get(i);
-		}
-		return currencies;
+		}	
+		
+		
+		String[] curr = currencies.toArray(new String[currencies.size()]);
+		
+		return curr;
+		
 	}
 
-	public String convert(String amountOrigin, String currencyOrigin, String currencyTarget) {
+	public double getRate(String currencyName) throws SAXException, IOException, ParserConfigurationException {
+		double d = 0;
+		final DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        final DocumentBuilder builder = factory.newDocumentBuilder();
+        File fileXML = new File("src/pool_java_project01/CONTROL/conversionRate.xml");
+
+       Document xml = builder.parse(fileXML);        
+       final Element racine = xml.getDocumentElement();
+        final NodeList racineNoeuds = racine.getChildNodes();
+        final int nbRacineNoeuds = racineNoeuds.getLength();        
+       for (int i = 0; i < nbRacineNoeuds; i++) {
+            if (racineNoeuds.item(i).getNodeType() == Node.ELEMENT_NODE) {
+                final Element currency = (Element) racineNoeuds.item(i);
+                final Element nameCurrency = (Element) currency.getElementsByTagName("name").item(0);
+                final Element ValueCurrency = (Element) currency.getElementsByTagName("Value").item(0);
+                if (nameCurrency.getTextContent().equals(currencyName)) {
+                     d = Double.parseDouble(ValueCurrency.getTextContent().replace(",","."));
+                } 
+            }
+        }
+       return d;
+	}
+	
+	public String convert(String amountOrigin, String currencyOrigin, String currencyTarget) throws SAXException, IOException, ParserConfigurationException {
 		double total = 0;
 
 		Currency origin = null;
@@ -73,36 +94,10 @@ public class Converter {
 
 		boolean b = Pattern.matches("[^a-zA-Z -]*", amountOrigin);
 		if (b) {
-
-			switch (currencyOrigin) {
-			case "EURO":
-				origin = new Euro();
-				break;
-			case "DOLLAR":
-				origin = new Dollar();
-				break;
-			case "POUND":
-				origin = new Pound();
-				break;
-			case "CANADIAN DOLLAR":
-				origin = new CanadianDollar();
-				break;
-			}
 			
-			switch (currencyTarget) {
-			case "EURO":
-				target = new Euro();
-				break;
-			case "DOLLAR":
-				target = new Dollar();
-				break;
-			case "POUND":
-				target = new Pound();
-				break;
-			case "CANADIAN DOLLAR":
-				target = new CanadianDollar();
-				break;
-			}
+			origin = new Currency(currencyOrigin, getRate(currencyOrigin));
+			target = new Currency(currencyTarget, getRate(currencyTarget)); 
+			
 
 			total = toResult(origin, target, Double.parseDouble(amountOrigin));
 			return Double.toString(total);

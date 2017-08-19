@@ -2,13 +2,14 @@ package pool_java_project01.CONTROL.CURRENCIES;
 
 import pool_java_project01.GUI.*;
 
-public abstract class Currency {
+public class Currency {
 
 	protected String name;
 	protected double convertDollar;
 
-	public Currency(String name) {
+	public Currency(String name, double rate) {
 		this.name = name;
+		this.convertDollar = rate;
 	}
 
 	public String getName() {
