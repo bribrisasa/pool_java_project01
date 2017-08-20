@@ -27,6 +27,9 @@ public class Converter {
 		this.view = view;
 	}
 
+	public Converter() {
+		
+	}
 	public double toResult(Currency origin, Currency target, double amount) {
 		double result;
 		result = amount * origin.convertToDollar();
