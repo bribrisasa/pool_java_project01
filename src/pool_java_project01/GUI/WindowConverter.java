@@ -75,7 +75,18 @@ public class WindowConverter {
         JButton goConvert = new JButton("Convert");
         goConvert.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                result = converter.convert(amountBeforeConvert.getText(), currencyOrigin.getSelectedItem().toString(), currencyTarget.getSelectedItem().toString());
+                try {
+					result = converter.convert(amountBeforeConvert.getText(), currencyOrigin.getSelectedItem().toString(), currencyTarget.getSelectedItem().toString());
+				} catch (ParserConfigurationException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (SAXException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
                 resultLabel.setText(result);
             }
         });

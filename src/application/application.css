@@ -1,0 +1,11 @@
+.button{
+       -fx-background-color: #014F5B;
+       -fx-text-fill: white;
+}
+
+.root { -fx-background-color: transparent; }
+
+.SplitMenuButton{
+	    -fx-background-color: #014F5B;
+       -fx-text-fill: white;
+}

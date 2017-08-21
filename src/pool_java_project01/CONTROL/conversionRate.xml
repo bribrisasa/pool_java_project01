@@ -8,12 +8,12 @@
         <!-- Euro -->
     <currency id="2">
         <name>EURO</name>
-        <Value>1,18</Value>
+        <Value>1.18</Value>
     </currency>
             <!-- Pound -->
     <currency id="3">
         <name>POUND</name>
-        <Value>1,29</Value>
+        <Value>1.29</Value>
     </currency>
               <!-- CanadianDollar -->
     <currency id="4">
