@@ -10,26 +10,26 @@
    <children>
       <AnchorPane layoutX="13.0" layoutY="12.0" prefHeight="58.0" prefWidth="642.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-8.0" AnchorPane.topAnchor="0.0">
          <children>
-            <ChoiceBox fx:id="scroll01" layoutX="103.0" layoutY="12.0" prefHeight="34.0" prefWidth="91.0" />
+            <ChoiceBox fx:id="scroll01" layoutX="103.0" layoutY="12.0" prefHeight="34.0" prefWidth="91.0"  onMouseClicked="#changeFlag1"/>
             <ImageView fx:id="Flag01" fitHeight="53.0" fitWidth="53.0" layoutX="203.0" layoutY="3.0">
                <image>
                   <Image url="@../IMAGES/icons8_France_96px.png" />
                </image>
             </ImageView>
-            <ChoiceBox fx:id="scroll02" layoutX="477.0" layoutY="12.0" prefHeight="34.0" prefWidth="108.0" />
+            <ChoiceBox fx:id="scroll02" layoutX="477.0" layoutY="12.0" prefHeight="34.0" prefWidth="108.0"  onMouseClicked="#changeFlag2"/>
             <ImageView fx:id="Flag02" fitHeight="53.0" fitWidth="53.0" layoutX="592.0" layoutY="3.0">
                <image>
                   <Image url="@../IMAGES/icons8_Great_Britain_96px.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="53.0" fitWidth="53.0" layoutX="319.0" layoutY="3.0" onMouseClicked="#processFlag1">
+            <ImageView fitHeight="53.0" fitWidth="53.0" layoutX="319.0" layoutY="3.0" onMouseClicked="#processConverter">
                <image>
                   <Image url="@../IMAGES/icons8_Forward_96px_1.png" />
                </image>
             </ImageView>
             <TextArea fx:id="amount01" layoutX="8.0" layoutY="6.0" prefHeight="27.0" prefWidth="83.0" />
             <TextArea fx:id="amount02" layoutX="372.0" layoutY="5.0" prefHeight="27.0" prefWidth="83.0" />
-            <ImageView fitHeight="53.0" fitWidth="53.0" layoutX="274.0" layoutY="3.0" nodeOrientation="RIGHT_TO_LEFT" onMouseClicked="#processFlag1">
+            <ImageView fitHeight="53.0" fitWidth="53.0" layoutX="274.0" layoutY="3.0" nodeOrientation="RIGHT_TO_LEFT" onMouseClicked="#processConverterRevert">
                <image>
                   <Image url="@../IMAGES/icons8_Forward_96px_1.png" />
                </image>

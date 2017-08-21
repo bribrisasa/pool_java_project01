@@ -2,11 +2,14 @@ package application;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.xml.sax.SAXException;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -25,63 +28,97 @@ public class ControllerChange {
 	@FXML private TextArea amount01;
 	@FXML private TextArea amount02;
 	private Boolean firstLaunch=true;
+	
 	Converter conv=new Converter();
 
-	ObservableList<String> options = FXCollections.observableArrayList("Euro","Pound","Dollar","Canadian Dollar");
-
 	@FXML
-	private void initialize() {
+	private void initialize() throws SAXException, IOException, ParserConfigurationException {
+		ArrayList<String> list = conv.currenciesList();
+		ObservableList<String> options = FXCollections.observableArrayList(list);
 		scroll01.setValue("Euro");
 		scroll02.setValue("Euro");
 		scroll01.setItems(options);
 		scroll02.setItems(options);
+		amount01.setText("0.00");
+		amount02.setText("0.00");
 	}
 
-	@FXML
-	private void processFlag1() throws SAXException, IOException, ParserConfigurationException {
-		if(firstLaunch==false) {
-			amount02.setText(processConverter());
+	private void processFlag() throws SAXException, IOException, ParserConfigurationException {
 			
-			
-		}else 
-		{			
-			firstLaunch=false;
-			amount01.setText("0.00");
-			amount02.setText("0.00");}
+				File file = new File(conv.getFlag(scroll01.getSelectionModel().getSelectedItem()));
+				
+				Image image = new Image(file.toURI().toString());
+				Flag01.setImage(image);
 	}
-
-	/*@FXML
-	private void processFlag2() {
-		if(firstLaunch==false) {
-			if(	scroll02.getSelectionModel().getSelectedItem()=="Euro") {
-				File file = new File("src/IMAGES/icons8_France_96px.png");
-				Image image = new Image(file.toURI().toString());
-				Flag02.setImage(image);
-			}
-			else if(scroll02.getSelectionModel().getSelectedItem()=="Dollar") 
-			{
-				File file = new File("src/IMAGES/icons8_USA_96px.png");
-				Image image = new Image(file.toURI().toString());
-				Flag02.setImage(image);	
-			}
-			else if(scroll02.getSelectionModel().getSelectedItem()=="Pound") 
-			{
-				File file = new File("src/IMAGES/icons8_Great_Britain_96px.png");
-				Image image = new Image(file.toURI().toString());
-				Flag02.setImage(image);	
-			}
-			else if(scroll02.getSelectionModel().getSelectedItem()=="Canadian Dollar") 
-			{
-				File file = new File("src/IMAGES/icons8_Canada_96px.png");
-				Image image = new Image(file.toURI().toString());
-				Flag02.setImage(image);	
-			}
-		}else {firstLaunch=false;
-		System.out.println("not ok");}
-	}*/
 	
-	private String processConverter() throws SAXException, IOException, ParserConfigurationException {
+	private void processFlag2() throws SAXException, IOException, ParserConfigurationException {
+		
+		File file = new File(conv.getFlag(scroll02.getSelectionModel().getSelectedItem()));
 
-		return conv.convert(amount01.getText(), scroll01.getSelectionModel().getSelectedItem(), scroll02.getSelectionModel().getSelectedItem());
+		Image image = new Image(file.toURI().toString());
+		Flag02.setImage(image);
+		
+		}
+	
+	@FXML
+	public void changeFlag1() {
+
+		scroll01.valueProperty().addListener(new ChangeListener<String>() {
+        
+			@Override
+			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+				try {
+					processFlag();
+				} catch (SAXException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (ParserConfigurationException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+			}    
+        });
+	}
+	
+	@FXML
+	public void changeFlag2() {
+
+		scroll02.valueProperty().addListener(new ChangeListener<String>() {
+        
+			@Override
+			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+				try {
+					processFlag2();
+				} catch (SAXException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (ParserConfigurationException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+			}    
+        });
+	}
+	
+	@FXML
+	private void processConverter() throws SAXException, IOException, ParserConfigurationException {
+		amount02.setText(
+		conv.convert(amount01.getText(), scroll01.getSelectionModel().getSelectedItem(), scroll02.getSelectionModel().getSelectedItem())
+		);
+	}
+	
+	@FXML
+	private void processConverterRevert() throws SAXException, IOException, ParserConfigurationException {
+		amount01.setText(
+		conv.convertRevert(amount02.getText(), scroll02.getSelectionModel().getSelectedItem(), scroll01.getSelectionModel().getSelectedItem())
+		);
 	}
 }

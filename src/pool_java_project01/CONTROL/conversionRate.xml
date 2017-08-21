@@ -4,21 +4,24 @@
     <currency id="1">
         <name>DOLLAR</name>
         <Value>1</Value>
+        <flag>src/IMAGES/icons8_USA_96px.png</flag>
     </currency>
         <!-- Euro -->
     <currency id="2">
         <name>EURO</name>
         <Value>1.18</Value>
+        <flag>src/IMAGES/icons8_France_96px.png</flag>
     </currency>
             <!-- Pound -->
     <currency id="3">
         <name>POUND</name>
         <Value>1.29</Value>
+        <flag>src/IMAGES/icons8_Great_Britain_96px.png</flag>
     </currency>
               <!-- CanadianDollar -->
     <currency id="4">
         <name>CANADIAN DOLLAR</name>
         <Value>0.79</Value>
-                      <!-- CanadianDollar -->
+        <flag>src/IMAGES/icons8_Canada_96px.png</flag>
     </currency>
 </conversion>
