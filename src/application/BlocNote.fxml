@@ -17,25 +17,34 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="483.0" prefWidth="298.0">
                      <children>
-                        <TextArea prefHeight="483.0" prefWidth="298.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        <TextArea fx:id="textAreaNote" prefHeight="483.0" prefWidth="298.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                      </children>
                   </AnchorPane>
               </content>
             </ScrollPane>
-            <Text fill="#224e61" layoutX="14.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Notepad" wrappingWidth="137.6708984375">
+            <Text fill="#224e61" layoutX="14.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="137.6708984375">
                <font>
                   <Font name="Arial Black" size="18.0" />
                </font>
             </Text>
-            <Pane fx:id="closePad" layoutX="267.0" layoutY="5.0" onMouseClicked="#processSuprBloc" prefHeight="41.0" prefWidth="41.0">
+            <Pane fx:id="closePad" layoutX="267.0" layoutY="5.0" onMouseClicked="#saveNote" prefHeight="41.0" prefWidth="41.0">
                <children>
-                  <ImageView fitHeight="55.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="55.0" fitWidth="41.0" onMouseClicked="#processSuprBloc" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../IMAGES/icons8_Close_Window_96px.png" />
                      </image>
                   </ImageView>
                </children>
             </Pane>
+            <ImageView fitHeight="55.0" fitWidth="41.0" layoutX="214.0" layoutY="5.0" onMouseClicked="#saveNote" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../IMAGES/icons8-save.png" />
+               </image>
+            </ImageView>
+            <Text fx:id="okSave" fill="WHITE" layoutX="111.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="81.21875">
+               <font>
+                  <Font name="Arial" size="13.0" />
+               </font></Text>
          </children></AnchorPane>
    </children>
 </AnchorPane>
