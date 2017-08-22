@@ -69,10 +69,10 @@
             <Button layoutX="163.0" layoutY="274.0" mnemonicParsing="false" onMousePressed="#processNumpad" prefHeight="65.0" prefWidth="65.0" stylesheets="@application.css" text="3" />
             <Button layoutX="14.0" layoutY="346.0" mnemonicParsing="false" onMousePressed="#processNumpad" prefHeight="65.0" prefWidth="138.0" stylesheets="@application.css" text="0" />
             <Button layoutX="164.0" layoutY="346.0" mnemonicParsing="false" onMousePressed="#processNumpad" prefHeight="65.0" prefWidth="65.0" stylesheets="@application.css" text="=" />
-            <Button layoutX="239.0" layoutY="346.0" mnemonicParsing="false" onMousePressed="#processNumpad" prefHeight="65.0" prefWidth="65.0" stylesheets="@application.css" text="/" />
-            <Button layoutX="239.0" layoutY="274.0" mnemonicParsing="false" onMousePressed="#processNumpad" prefHeight="65.0" prefWidth="65.0" stylesheets="@application.css" text="+" />
-            <Button layoutX="239.0" layoutY="200.0" mnemonicParsing="false" onMousePressed="#processNumpad" prefHeight="65.0" prefWidth="65.0" stylesheets="@application.css" text="-" />
-            <Button layoutX="239.0" layoutY="126.0" mnemonicParsing="false" onMousePressed="#processNumpad" prefHeight="65.0" prefWidth="65.0" stylesheets="@application.css" text="*" />
+            <Button layoutX="239.0" layoutY="346.0" mnemonicParsing="false" onMousePressed="#processNumpad" prefHeight="65.0" prefWidth="65.0" stylesheets="@application.css" text="/"/>
+            <Button layoutX="239.0" layoutY="274.0" mnemonicParsing="false" onMousePressed="#processNumpad" prefHeight="65.0" prefWidth="65.0" stylesheets="@application.css" text="+"/>
+            <Button layoutX="239.0" layoutY="200.0" mnemonicParsing="false" onMousePressed="#processNumpad" prefHeight="65.0" prefWidth="65.0" stylesheets="@application.css" text="-"/>
+            <Button layoutX="239.0" layoutY="126.0" mnemonicParsing="false" onMousePressed="#processNumpad" prefHeight="65.0" prefWidth="65.0" stylesheets="@application.css" text="*"/>
             <Label fx:id="CalcLabel" contentDisplay="CENTER" layoutX="14.0" layoutY="25.0" prefHeight="82.0" prefWidth="293.0" text="Label" />
          </children>
       </AnchorPane>

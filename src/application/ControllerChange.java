@@ -36,7 +36,7 @@ public class ControllerChange {
 		ArrayList<String> list = conv.currenciesList();
 		ObservableList<String> options = FXCollections.observableArrayList(list);
 		scroll01.setValue("Euro");
-		scroll02.setValue("Euro");
+		scroll02.setValue("Pound");
 		scroll01.setItems(options);
 		scroll02.setItems(options);
 		amount01.setText("0.00");
