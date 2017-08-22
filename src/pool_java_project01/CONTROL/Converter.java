@@ -111,7 +111,7 @@ public class Converter {
         Currency target = null;
 
         boolean b = Pattern.matches("[^a-zA-Z -]*", amountOrigin);
-        if (true) {
+        if (b) {
             
             origin = new Currency(currencyOrigin, getRate(currencyOrigin));
             target = new Currency(currencyTarget, getRate(currencyTarget)); 
@@ -129,7 +129,7 @@ public class Converter {
         Currency target = null;
 
         boolean b = Pattern.matches("[^a-zA-Z -]*", amountOrigin);
-        if (true) {
+        if (b) {
             
             origin = new Currency(currencyOrigin, getRate(currencyOrigin));
             target = new Currency(currencyTarget, getRate(currencyTarget)); 
