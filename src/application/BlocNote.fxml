@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="Window" prefHeight="394.0" prefWidth="269.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ControlerBloc">
+   <children>
+      <AnchorPane prefHeight="394.0" prefWidth="322.0" style="-fx-background-color: #C1D4DB;">
+         <children>
+            <ScrollPane layoutX="14.0" layoutY="53.0" prefHeight="333.0" prefWidth="297.0">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="483.0" prefWidth="298.0">
+                     <children>
+                        <TextArea prefHeight="483.0" prefWidth="298.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </ScrollPane>
+            <Text fill="#224e61" layoutX="14.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Notepad" wrappingWidth="137.6708984375">
+               <font>
+                  <Font name="Arial Black" size="18.0" />
+               </font>
+            </Text>
+            <Pane fx:id="closePad" layoutX="267.0" layoutY="5.0" onMouseClicked="#processSuprBloc" prefHeight="41.0" prefWidth="41.0">
+               <children>
+                  <ImageView fitHeight="55.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../IMAGES/icons8_Close_Window_96px.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+         </children></AnchorPane>
+   </children>
+</AnchorPane>
