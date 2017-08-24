@@ -39,8 +39,8 @@ public class ControllerChange {
 		scroll02.setItems(options);
 		scroll01.getSelectionModel().select(1);
 		scroll02.getSelectionModel().select(2);
-		amount01.setText("0.00");
-		amount02.setText("0.00");
+		amount01.setText("0");
+		amount02.setText("0");
 	}
 
 	private void processFlag() throws SAXException, IOException, ParserConfigurationException {

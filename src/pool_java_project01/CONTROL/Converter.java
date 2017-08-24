@@ -108,16 +108,16 @@ public class Converter {
 
         Currency origin = null;
         Currency target = null;
-
-        boolean b = Pattern.matches("[^a-zA-Z -]*", amountOrigin);
+        String dd = amountOrigin.replace(',', '.');
+        boolean b = Pattern.matches("\\d+(\\.\\d+)?", dd);
         if (b) {
             
             origin = new Currency(currencyOrigin, getRate(currencyOrigin));
             target = new Currency(currencyTarget, getRate(currencyTarget)); 
             
 
-            total = toResult(origin, target, Double.parseDouble(amountOrigin));
-            return Double.toString(total);
+            total = toResult(origin, target, Double.parseDouble(dd));
+            return Double.toString(total).replace(',', '.');
         } else{return "O";}
     }
     
@@ -126,8 +126,7 @@ public class Converter {
 
         Currency origin = null;
         Currency target = null;
-
-        boolean b = Pattern.matches("[^a-zA-Z -]*", amountOrigin);
+        boolean b = Pattern.matches("\\d+(\\.\\d+)?", amountOrigin);
         if (b) {
             
             origin = new Currency(currencyOrigin, getRate(currencyOrigin));
