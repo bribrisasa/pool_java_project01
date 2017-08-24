@@ -1,24 +1,14 @@
 package application;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.regex.Pattern;
-
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.Labeled;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
@@ -30,10 +20,10 @@ import javafx.stage.StageStyle;
 public class Controller {
 
 	private int changeCount;
-	private static String value = "";
 	private double xOffset = 0;
 	private double yOffset = 0;
 	ControlerBloc cb;
+	public static Boolean isVisible=false; 
 
 	@FXML
 	private Label CalcLabel;
@@ -46,7 +36,7 @@ public class Controller {
 
 	@FXML
 	private AnchorPane Converter, Calculator, Home, Menu;
-	
+
 
 	@FXML
 	private FlowPane changePanel;
@@ -56,17 +46,14 @@ public class Controller {
 		if (event.getSource() == Calc) {
 			Home.setVisible(false);
 			Converter.setVisible(false);
-			Calculator.setVisible(true);
 			Calculator.toFront();
 		} else if (event.getSource() == ballance) {
 			Home.setVisible(false);
 			Converter.setVisible(true);
-			Calculator.setVisible(false);
 			Converter.toFront();
 		} else if (event.getSource() == Homebt) {
 			Home.setVisible(true);
 			Converter.setVisible(false);
-			Calculator.setVisible(false);
 			Converter.toFront();
 		}
 	}
@@ -117,12 +104,13 @@ public class Controller {
 
 	@FXML
 	private void openNote() throws IOException {
+		if(isVisible==false) {
 		Parent root;
-		cb = new ControlerBloc();
-		Stage BlocStage=new Stage();
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("BlocNote.fxml"));
-		root = loader.load();
-			
+			cb = new ControlerBloc();
+			Stage BlocStage=new Stage();
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("BlocNote.fxml"));
+			root = loader.load();
+
 			BlocStage.initStyle(StageStyle.TRANSPARENT);
 			root.setOnMousePressed(new EventHandler<MouseEvent>() {
 				@Override
@@ -138,7 +126,6 @@ public class Controller {
 					BlocStage.setY(event.getScreenY() - yOffset);
 				}
 			});
-			
 
 			Scene scene = new Scene(root);
 			scene.setFill(Color.TRANSPARENT);
@@ -146,9 +133,8 @@ public class Controller {
 			BlocStage.sizeToScene(); 
 			cb.chargeNote((Node) loader.getNamespace().get("textAreaNote"));
 			BlocStage.show();
-			
-					
-					}
-				} 
-
+			isVisible=true;
+		}
+	} 
+}
 

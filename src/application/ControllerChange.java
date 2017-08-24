@@ -35,10 +35,10 @@ public class ControllerChange {
 	private void initialize() throws SAXException, IOException, ParserConfigurationException {
 		ArrayList<String> list = conv.currenciesList();
 		ObservableList<String> options = FXCollections.observableArrayList(list);
-		scroll01.setValue("Euro");
-		scroll02.setValue("Pound");
 		scroll01.setItems(options);
 		scroll02.setItems(options);
+		scroll01.getSelectionModel().select(1);
+		scroll02.getSelectionModel().select(2);
 		amount01.setText("0.00");
 		amount02.setText("0.00");
 	}

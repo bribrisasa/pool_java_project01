@@ -36,10 +36,10 @@ public class ControlerBloc {
 			out.write(textAreaNote.getText()); //
 			out.close();
 			okSave.setText("Saved.");
-
+			Controller.isVisible=false;
 		} catch (IOException er) {
 		}
-		
+
 	}
 
 	@FXML
@@ -58,7 +58,7 @@ public class ControlerBloc {
 					textAreaNote.setText(s);
 				}
 			} catch (IOException e) {
-				
+
 			}
 		} catch (FileNotFoundException err) {
 
@@ -72,15 +72,15 @@ public class ControlerBloc {
 			FileInputStream fis = new FileInputStream("Note.txt");
 			int n;
 
-				while ((n = fis.available()) > 0) {
-					byte[] b = new byte[n];
-					int result = fis.read(b);
-					if (result == -1)
-						break;
-					s = new String(b);
-					
-				}
-				((TextArea) text).setText(s);
+			while ((n = fis.available()) > 0) {
+				byte[] b = new byte[n];
+				int result = fis.read(b);
+				if (result == -1)
+					break;
+				s = new String(b);
+
+			}
+			((TextArea) text).setText(s);
 		}catch(Exception e) { e.printStackTrace();}
 	}
 }

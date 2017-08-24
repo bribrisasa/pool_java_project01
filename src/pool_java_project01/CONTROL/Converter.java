@@ -29,7 +29,6 @@ public class Converter {
         total = result / getRate(target.getName());
        
         return (double) Math.round(total * 100) / 100;
-
     }
 
     public ArrayList<String> currenciesList() throws SAXException, IOException, ParserConfigurationException {
